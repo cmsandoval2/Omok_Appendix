@@ -46,6 +46,19 @@ class BoardTest {
 		board.placeStone(14, 14, board.player1);
 		assertEquals('X',board.board[14][14]);
 	}
-	
+	/**Test method for isEmpty() use assertTrue and assertFalse to see is the results match the expected */
+	@Test
+	public void testIsEmpty() {
+		assertTrue(board.isEmpty(0, 0));
+		board.board[14][14]='X';
+		assertFalse(board.isEmpty(14, 14));
+	}
+	/**Test method for isOccupied() use assertTrue and assertFalse to see is the results match the expected */
+	@Test
+	public void testIsOccupied() {
+		assertFalse(board.isOccupied(0, 0));
+		board.board[14][14]='X';
+		assertTrue(board.isOccupied(14, 14));
+	}
 	}
 
