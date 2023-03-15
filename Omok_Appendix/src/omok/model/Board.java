@@ -21,7 +21,7 @@ public class Board {
     /** Create a new board of the default size. */
     public Board() {
     	size=15;
-        board=new char[size][size];
+       this.board=new char[size][size];
         for(int i=0;i<size;i++) {
         	for(int j=0;j<size;j++) {
         		board[i][j]='.';
@@ -32,7 +32,7 @@ public class Board {
     /** Create a new board of the specified size. */
     public Board(int size) {
     	this.size=size;  
-        board=new char[size][size];
+        this.board=new char[size][size];
         for(int i=0;i<size;i++) {
         	for(int j=0;j<size;j++) {
         		board[i][j]='.';
