@@ -50,6 +50,11 @@ public class Board {
      * resetting the board to its original state. 
      */
     public void clear() {
+    	for(int i=0;i<board.length;i++) {
+    		for(int j=0;j<board[i].length;j++) {
+    			board[i][j]='.';
+    		}
+    		}
     }
 
     /** Return a boolean value indicating whether all the places
