@@ -18,6 +18,15 @@ class BoardTest {
 	public void testSize() {
 		assertEquals(15,board.size());
 	}
-	
+	/**Will test if the board only has '.' and not any user input */
+	@Test
+	public void testClear() {
+		board.clear();
+		for(int i=0;i<board.size();i++) {
+        	for(int j=0;j<board.size();j++) {
+        		assertEquals('.',board.board[i][j]);
+        	}
+        }
+	}
 
 }
