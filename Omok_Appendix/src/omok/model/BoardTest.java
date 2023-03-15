@@ -28,5 +28,17 @@ class BoardTest {
         	}
         }
 	}
+	/**Testing if the isFull method works by using a full board*/
+	@Test
+	public void testIsFull() {
+		assertFalse(board.isFull());
+		board.board=new char[][] {
+			{'X','O','X','O','X','O','X'},
+			{'O','X','X','O','O','X','O'},
+			{'x','O','O','X','O','X','O'},
+			{'X','O','X','X','O','X','O'},
+			{'O','X','X','O','X','O','X'}};
+			assertTrue(board.isFull());
+		}
+	}
 
-}
