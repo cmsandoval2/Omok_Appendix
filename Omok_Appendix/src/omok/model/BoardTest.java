@@ -40,5 +40,12 @@ class BoardTest {
 			{'O','X','X','O','X','O','X'}};
 			assertTrue(board.isFull());
 		}
+	/**test method for placeStone() uses placeStone method and checks if the board is equal to what is placed on board */
+	@Test
+	public void testPlaceStone() {
+		board.placeStone(14, 14, board.player1);
+		assertEquals('X',board.board[14][14]);
+	}
+	
 	}
 
