@@ -67,6 +67,13 @@ class BoardTest {
 		board.board[14][14]='X';
 		assertTrue(board.isOccupiedBy(14, 14, board.player1));
 	}
-	
+	@Test
+	public void testPlayerAt() {
+		assertNull(board.playerAt(0, 0));
+		board.board[14][14]='X';
+		assertEquals(board.player1,board.playerAt(14, 14));
+		
+		
+	}
 	}
 

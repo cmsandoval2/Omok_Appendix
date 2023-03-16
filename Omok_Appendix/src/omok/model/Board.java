@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class Board {
 	private final int size;
-	private Player player1=new Player("Player 1");
-	private Player player2=new Player("Player 2"); 
+	protected Player player1=new Player("Player 1");
+	protected Player player2=new Player("Player 2"); 
 	char[][] board=new char[0][0];
     /** Create a new board of the default size. */
     public Board() {
@@ -147,8 +147,6 @@ public class Board {
      * @param y 0-based row (horizontal) index
      */
     public Player playerAt(int x, int y) {
-    	Player player1=new Player("Player 1");
-    	Player player2=new Player("Player 2");
     	if(isOccupiedBy(x,y,player1)) {
     		return player1;
     	}else if(isOccupiedBy(x,y,player2)) {
