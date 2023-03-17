@@ -17,6 +17,14 @@ public class Board {
 	private final int size;
 	protected Player player1=new Player("Player 1");
 	protected Player player2=new Player("Player 2"); 
+	protected Player player3=new Player("CPU");
+	public Place place;
+	public Place place1;
+	public Place place2;
+	public Place place3;
+	public Place place4;
+
+
 	char[][] board=new char[0][0];
     /** Create a new board of the default size. */
     public Board() {
@@ -162,11 +170,16 @@ public class Board {
      * a horizontal, vertical, or diagonal direction.
      */
     public boolean isWonBy(Player player) {
-    	if(player.name()=="player") {
+    	if(player.name()=="Player 1") {
     		//Horizontal
     	for(int i=0;i<board.length;i++) {
     		for(int j=0;j<board[i].length-3;j++) {
     			if(board[i][j]=='X'&&board[i][j+1]=='X'&&board[i][j+2]=='X'&&board[i][j+3]=='X'&&board[i][j+4]=='X') {
+    				place=new Place(i,j);
+    				place1=new Place(i,j+1);
+    				place2=new Place(i,j+2);
+    				place3=new Place(i,j+3);
+    				place4=new Place(i,j+4);
     				return true;
     			}
     		}
@@ -175,7 +188,12 @@ public class Board {
     		for(int i=0;i<board.length-3;i++) {
     			for(int j=0;j<board[i].length;j++) {
     		 if(board[i][j]=='X'&&board[i+1][j]=='X'&&board[i+2][j]=='X'&&board[i+3][j]=='X'&&board[i+4][j]=='X') {
-    				return true;
+    			 place=new Place(i,j);
+ 				place1=new Place(i+1,j);
+ 				place2=new Place(i+2,j);
+ 				place3=new Place(i+3,j);
+ 				place4=new Place(i+4,j);	
+    			 return true;
     			}
     			}
     		}
@@ -183,7 +201,12 @@ public class Board {
     		for (int i = 4; i < board.length; i++) {
     		    for (int j = 0; j < board[i].length-4; j++) {
     		        if (board[i][j] == 'X' && board[i-1][j+1] == 'X' && board[i-2][j+2] == 'X' && board[i-3][j+3] == 'X' && board[i-4][j+4] == 'X') {
-    		            return true;
+    		        	place=new Place(i,j);
+        				place1=new Place(i-1,j+1);
+        				place2=new Place(i-2,j+2);
+        				place3=new Place(i-3,j+3);
+        				place4=new Place(i-4,j+4);
+    		        	return true;
     		        }
     		    }
     		}
@@ -191,12 +214,17 @@ public class Board {
     		for(int i=4;i<board.length;i++) {
     			for(int j=4;j<board[i].length;j++) {
     				if(board[i][j]=='X'&&board[i-1][j-1]=='X'&&board[i-2][j-2]=='X'&&board[i-3][j-3] =='X'&&board[i-4][j-4]=='X') {
+    					place=new Place(i,j);
+        				place1=new Place(i-1,j-1);
+        				place2=new Place(i-2,j-2);
+        				place3=new Place(i-2,j-3);
+        				place4=new Place(i-2,j-4);
     					return true;
     		}
     			}
     		}
     	}
-    	if(player.name()=="cpu"||player.name()=="player2") {
+    	if(player.name()=="CPU"||player.name()=="Player 2") {
     		//Horizontal
     		for(int i=0;i<board.length;i++) {
     			for(int j=0;j<board[i].length-3;j++) {
@@ -209,7 +237,12 @@ public class Board {
     			for(int i=0;i<board.length-3;i++) {
     				for(int j=0;j<board[i].length;j++) {
     			 if(board[i][j]=='O'&&board[i+1][j]=='O'&&board[i+2][j]=='O'&&board[i+3][j]=='O'&&board[i+4][j]=='O') {
-    					return true;
+    				 place=new Place(i,j);
+     				place1=new Place(i,j+1);
+     				place2=new Place(i,j+2);
+     				place3=new Place(i,j+3);
+     				place4=new Place(i,j+4);	
+    				 return true;
     				}
     				}
     			}
@@ -217,7 +250,12 @@ public class Board {
     			for (int i = 4; i < board.length; i++) {
     			    for (int j = 0; j < board[i].length-4; j++) {
     			        if (board[i][j] == 'O' && board[i-1][j+1] == 'O' && board[i-2][j+2] == 'O' && board[i-3][j+3] == 'O' && board[i-4][j+4] == 'O') {
-    			            return true;
+    			        	place=new Place(i,j);
+    	    				place1=new Place(i-1,j+1);
+    	    				place2=new Place(i-2,j+2);
+    	    				place3=new Place(i-3,j+3);
+    	    				place4=new Place(i-4,j+4);
+    			        	return true;
     			        }
     			    }
     			}
@@ -225,6 +263,11 @@ public class Board {
     			for(int i=4;i<board.length;i++) {
     				for(int j=4;j<board[i].length;j++) {
     					if(board[i][j]=='O'&&board[i-1][j-1]=='O'&&board[i-2][j-2]=='O'&&board[i-3][j-3] =='O'&&board[i-4][j-4]=='O') {
+    						place=new Place(i,j);
+    	    				place1=new Place(i-1,j-1);
+    	    				place2=new Place(i-2,j-2);
+    	    				place3=new Place(i-3,j-3);
+    	    				place4=new Place(i-4,j-4);
     						return true;
     			}
     				}
@@ -238,14 +281,153 @@ public class Board {
      * List<Place>. */
     public Iterable<Place> winningRow() {
     	List<Place> winner=new ArrayList<Place>();
-    	for(int i=0;i<size;i++) {
-        	for(int j=0;j<size;j++) {
+    	if(isWonBy(player1)||isWonBy(player2)) {
+    		//Horizontal
+        	for(int i=0;i<board.length;i++) {
+        		for(int j=0;j<board[i].length-3;j++) {
+        			if(board[i][j]=='X'&&board[i][j+1]=='X'&&board[i][j+2]=='X'&&board[i][j+3]=='X'&&board[i][j+4]=='X') {
+        				Place place=new Place(i,j);
+        				Place place1=new Place(i,j+1);
+        				Place place2=new Place(i,j+2);
+        				Place place3=new Place(i,j+3);
+        				Place place4=new Place(i,j+4);
+        				winner.add(place);
+        				winner.add(place1);
+        				winner.add(place2);
+        				winner.add(place3);
+        				winner.add(place4);
+        			}
+        		}
+        	}
+        			//vertical
+        		for(int i=0;i<board.length-3;i++) {
+        			for(int j=0;j<board[i].length;j++) {
+        		 if(board[i][j]=='X'&&board[i+1][j]=='X'&&board[i+2][j]=='X'&&board[i+3][j]=='X'&&board[i+4][j]=='X') {
+        			 Place place=new Place(i,j);
+     				Place place1=new Place(i+1,j);
+     				Place place2=new Place(i+2,j);
+     				Place place3=new Place(i+3,j);
+     				Place place4=new Place(i+4,j);
+     				winner.add(place);
+     				winner.add(place1);
+     				winner.add(place2);
+     				winner.add(place3);
+     				winner.add(place4);
+        			}
+        			}
+        		}
+        		//Ascending diagonal
+        		for (int i = 4; i < board.length; i++) {
+        		    for (int j = 0; j < board[i].length-4; j++) {
+        		        if (board[i][j] == 'X' && board[i-1][j+1] == 'X' && board[i-2][j+2] == 'X' && board[i-3][j+3] == 'X' && board[i-4][j+4] == 'X') {
+        		        	Place place=new Place(i,j);
+            				Place place1=new Place(i-1,j+1);
+            				Place place2=new Place(i-2,j+2);
+            				Place place3=new Place(i-3,j+3);
+            				Place place4=new Place(i-4,j+4);
+            				winner.add(place);
+            				winner.add(place1);
+            				winner.add(place2);
+            				winner.add(place3);
+            				winner.add(place4);
+        		        }
+        		    }
+        		}
+        		//Descending diagonal
+        		for(int i=4;i<board.length;i++) {
+        			for(int j=4;j<board[i].length;j++) {
+        				if(board[i][j]=='X'&&board[i-1][j-1]=='X'&&board[i-2][j-2]=='X'&&board[i-3][j-3] =='X'&&board[i-4][j-4]=='X') {
+        					Place place=new Place(i,j);
+            				Place place1=new Place(i-1,j-1);
+            				Place place2=new Place(i-2,j-2);
+            				Place place3=new Place(i-3,j-3);
+            				Place place4=new Place(i-4,j-4);
+            				winner.add(place);
+            				winner.add(place1);
+            				winner.add(place2);
+            				winner.add(place3);
+            				winner.add(place4);
+        		}
+        			}
+        		}
+        		//Horizontal
+        		for(int i=0;i<board.length;i++) {
+        			for(int j=0;j<board[i].length-3;j++) {
+        				if(board[i][j]=='O'&&board[i][j+1]=='O'&&board[i][j+2]=='O'&&board[i][j+3]=='O'&&board[i][j+4]=='O') {
+        					Place place=new Place(i,j);
+            				Place place1=new Place(i,j+1);
+            				Place place2=new Place(i,j+2);
+            				Place place3=new Place(i,j+3);
+            				Place place4=new Place(i,j+4);
+            				winner.add(place);
+            				winner.add(place1);
+            				winner.add(place2);
+            				winner.add(place3);
+            				winner.add(place4);
+        				}
+        			}
+        		}
+        				//vertical
+        			for(int i=0;i<board.length-3;i++) {
+        				for(int j=0;j<board[i].length;j++) {
+        			 if(board[i][j]=='O'&&board[i+1][j]=='O'&&board[i+2][j]=='O'&&board[i+3][j]=='O'&&board[i+4][j]=='O') {
+        				 Place place=new Place(i,j);
+          				Place place1=new Place(i+1,j);
+          				Place place2=new Place(i+2,j);
+          				Place place3=new Place(i+3,j);
+          				Place place4=new Place(i+4,j);
+          				winner.add(place);
+          				winner.add(place1);
+          				winner.add(place2);
+          				winner.add(place3);
+          				winner.add(place4);
+        				}
+        				}
+        			}
+        			//Ascending diagonal
+        			for (int i = 4; i < board.length; i++) {
+        			    for (int j = 0; j < board[i].length-4; j++) {
+        			        if (board[i][j] == 'O' && board[i-1][j+1] == 'O' && board[i-2][j+2] == 'O' && board[i-3][j+3] == 'O' && board[i-4][j+4] == 'O') {
+        			        	Place place=new Place(i,j);
+                				Place place1=new Place(i-1,j+1);
+                				Place place2=new Place(i-2,j+2);
+                				Place place3=new Place(i-3,j+3);
+                				Place place4=new Place(i-4,j+4);
+                				winner.add(place);
+                				winner.add(place1);
+                				winner.add(place2);
+                				winner.add(place3);
+                				winner.add(place4);    
+        			        }
+        			    }
+        			}
+        			//Descending diagonal
+        			for(int i=4;i<board.length;i++) {
+        				for(int j=4;j<board[i].length;j++) {
+        					if(board[i][j]=='O'&&board[i-1][j-1]=='O'&&board[i-2][j-2]=='O'&&board[i-3][j-3] =='O'&&board[i-4][j-4]=='O') {
+        						Place place=new Place(i,j);
+                				Place place1=new Place(i-1,j-1);
+                				Place place2=new Place(i-2,j-2);
+                				Place place3=new Place(i-3,j-3);
+                				Place place4=new Place(i-4,j-4);
+                				winner.add(place);
+                				winner.add(place1);
+                				winner.add(place2);
+                				winner.add(place3);
+                				winner.add(place4);
+                				
+        			}
+        				}
+        			}
+    	}
+    	/*for(int i=0;i<board.length;i++) {
+        	for(int j=0;j<board[i].length;j++) {
         		if(isWonBy(player1)||isWonBy(player2)) {
         			Place place=new Place(i,j);
         			winner.add(place);
         		}
         	}
-        }
+        }*/
        		return winner;
         
     }
